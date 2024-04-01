@@ -1,0 +1,41 @@
+Performing camera connection and capturing image using Raspberry PI.
+
+1.	Open terminal and type sudo raspi-config and press Enter.
+2.	Use the down arrow to select 5 Interfacing Options.
+3.	Arrow down to P4 SPI.
+4.	Select yes when it asks you to enable SPI.
+5.	Also select yes when it asks about automatically loading the kernel module.
+6.	Use the right arrow to select the <Finish> button.
+7.	Select yes when it asks to reboot.
+8.	Also enable P1 Camera.
+9.	Select yes when it asks ‘would you like the camera interface to be enabled?’.
+10.	Exit raspi-config and accept to reboot the device.
+
+The first thing you can try is to simply take a picture of the image seen by the camera.
+
+Raspistill -o image.jpg
+
+As soon as you hit the ENTER key, you’ll see a large picture of what the camera sees appear on-screen. This is called the live preview and, unless you tell raspistill otherwise, it will last for five seconds. After those five seconds are up, the camera will capture a single still picture and save it in your home folder under the name image.jpg.
+
+With -o you define the target file name (where the pictures will be saved). It’s possible to use a file name including the path, for example:
+
+Raspistill -o Desktop/image.jpg
+
+
+
+
+Control the camera from the python :
+
+Sudo apt-get update
+Sudo apt-get install python-picamera python3-picamera
+
+code :
+
+From picamera import PiCamera
+From time import sleep
+
+camera = PiCamera()
+camera.start_preview(fullscreen=false, windows = (50,150,1024,576)
+sleep(10)
+camera.capture(‘test.jpg’)
+camera.stop_preview() 
